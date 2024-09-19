@@ -3,12 +3,12 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const form = document.querySelector('.form');
 
-form.addEventListener('submit', (event) => {
+
+form.addEventListener('submit', function(event) {
 event.preventDefault(); 
 
-
-const delay = parseInt(form.elements['delay'].value, 10);
-const state = form.elements['state'].value;
+const delay = parseInt(form.elements.delay.value);
+const state = form.elements.state.value;
 
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -23,18 +23,16 @@ const promise = new Promise((resolve, reject) => {
 promise
     .then((delay) => {
     iziToast.success({
-        title: 'Success',
-        message: `✅ Fulfilled promise in ${delay}ms`,
+        title: '✅ Fulfilled',
+        message: `Promise in ${delay}ms`,
         position: 'topRight',
-        timeout: 5000
     });
     })
     .catch((delay) => {
     iziToast.error({
-        title: 'Error',
-        message: `❌ Rejected promise in ${delay}ms`,
+        title: '❌ Rejected',
+        message: `Promise in ${delay}ms`,
         position: 'topRight',
-        timeout: 5000
     });
     });
 });
